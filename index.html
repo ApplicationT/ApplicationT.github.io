@@ -11,46 +11,41 @@
  
 <a id="vlink" onClick="try_to_open_app()" style="display:none"></a>
 <script>
-var browser={    
-        versions:function(){            
-            var u = navigator.userAgent, app = navigator.appVersion;   
-            return {                
-            trident: u.indexOf('Trident') > -1, //IE内核                
-            presto: u.indexOf('Presto') > -1, //opera内核                
-            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核                
-            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核                
-            mobile: !!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/), //是否为移动终端                
-            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端                
-            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器                
-            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器                
-            iPad: u.indexOf('iPad') > -1, //是否iPad                
-            webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部       
-        };
-    }()
-} 
-    var iOS_URL = "transfer://transfer.guest.com/openwith?uid=123"; 
-    var Android_URL = "transfer://transfer.guest.com/openwith?uid=123";
-    var mtUrl = "transfer://transfer.guest.com/openwith?uid=123";
-    function open_link() {
-        window.location=mtUrl;
+
+    $(".greenBtn").click(function(e){
+        openApp(e);
+    });
+
+    function openApp(e){
+        var u = window.navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        if(isAndroid){
+            android();
+        }
+        if(isiOS){
+            ios();
+        }
     }
-    function try_to_open_app() {
-        setTimeout('open_link()', 500);
-    }
-    //IOS
-    if(browser.versions.iPhone){
-        document.getElementById("vlink").setAttribute("href",iOS_URL);
-        document.getElementById("vlink").click();
-    }
-    //Android
-    else if(browser.versions.android){    
-        document.getElementById("vlink").setAttribute("href",Android_URL);
-        document.getElementById("vlink").click();
-    }
-     
-    else{
-        open_link();
-    }
+    function android(){
+        window.location.href = "transfer://transfer.guest.com/openwith"; /***打开app的协议，有安卓同事提供***/
+        window.setTimeout(function(){
+           window.location.href = "http://app.mi.com/details?id=com.miui.backup.transfer"; /***Android移动端下载地址***/
+        },2000);
+      }
+
+    function ios(){
+        var ifr = document.createElement("iframe");
+        ifr.src = "打开APP的协议"; /***打开app的协议，有ios同事提供***/
+        ifr.style.display = "none"; 
+        document.body.appendChild(ifr);
+        window.setTimeout(function(){
+          document.body.removeChild(ifr);
+           window.location.href = "下载APP的地址"; /***下载app的地址***/
+        },2000)
+      }
+
+    
 </script>
 </body>
 </html>
