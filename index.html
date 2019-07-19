@@ -9,7 +9,7 @@
 </head>
 <body>
  
-<a id="vlink" onClick="try_to_open_app()" style="display:none"></a>
+<a id="vlink" onClick="open_link()" style="display:none"></a>
 <script>
 var browser={    
         versions:function(){            
@@ -35,10 +35,7 @@ var browser={
         window.location = "transfer://transfer.guest.com/openwith"; /***打开app的协议，有安卓同事提供***/
         window.setTimeout(function(){
            window.location = "http://app.mi.com/details?id=com.miui.backup.transfer"; /***Android移动端下载地址***/
-        },2000);
-    }
-    function try_to_open_app() {
-        setTimeout('open_link()', 500);
+        },1000);
     }
     //IOS
     if(browser.versions.iPhone){
