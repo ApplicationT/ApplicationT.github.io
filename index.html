@@ -28,13 +28,13 @@ var browser={
         };
     }()
 } 
-    var iOS_URL = "transfer://transfer.guest.com/openwith?uid=123"; 
-    var Android_URL = "transfer://transfer.guest.com/openwith?uid=123";
-    var mtUrl = "transfer://transfer.guest.com/openwith?uid=123";
+    var iOS_URL = "transfer://transfer.main.com/openwith?uid=123"; 
+    var Android_URL = "transfer://transfer.main.com/openwith?uid=123";
+    var mtUrl = "transfer://transfer.main.com/openwith?uid=123";
     function open_link() {
-        window.location = "transfer://transfer.guest.com/openwith"; /***打开app的协议，有安卓同事提供***/
+        window.location = "transfer://transfer.main.com/openwith"; /***打开app的协议，有安卓同事提供***/
         window.setTimeout(function(){
-           window.location = "http://app.mi.com/details?id=com.miui.backup.transfer"; /***Android移动端下载地址***/
+           window.location = "http://app.mi.com/details?id=com.miui.huanji"; /***Android移动端下载地址***/
         },1000);
     }
     //IOS
